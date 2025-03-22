@@ -1,0 +1,25 @@
+.ProfileButton {
+	background: transparent;
+	border: none;
+	outline: none;
+	display: flex;
+	gap: 15px;
+	justify-content: center;
+	align-items: center;
+	.name {
+		font-size: 15px;
+	}
+	.arrow {
+		position: relative;
+		right: 3px;
+		width: 20px;
+		height: 20px;
+		color: var(--navy-shadow);
+		transform: rotate(180deg);
+		transition: var(--transition);
+		&.active {
+			transform: rotate(360deg);
+			color: var(--black);
+		}
+	}
+}

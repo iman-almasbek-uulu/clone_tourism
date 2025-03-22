@@ -1,0 +1,296 @@
+.imageFallback {
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+    height: 271px;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+    
+    @media (max-width: 1200px) {
+      height: 240px;
+    }
+    
+    @media (max-width: 768px) {
+      height: 210px;
+    }
+    
+    @media (max-width: 576px) {
+      height: 180px;
+      font-size: 16px;
+      padding: 15px;
+    }
+    
+    @media (max-width: 390px) {
+      height: 160px;
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  
+  .heartFallback {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 39px;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #e74c3c;
+    cursor: pointer;
+  }
+  
+  .rightFallback {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #004a60;
+    cursor: pointer;
+  }
+  
+  .hotelHistory {
+    width: 100%;
+    padding: 20px 0;
+    max-height: 100vh;
+    overflow-y: auto; /* Enable vertical scrolling for the entire component */
+    
+    /* Improved scrollbar styling for vertical scroll */
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #d1d1d1;
+      border-radius: 20px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--main-color, #004a60);
+      border-radius: 20px;
+    }
+    
+    /* Add responsive padding for better mobile experience */
+    @media (max-width: 768px) {
+      padding: 15px 0;
+    }
+    
+    @media (max-width: 576px) {
+      padding: 10px 0;
+    }
+  }
+  
+  .list {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding-bottom: 15px;
+    margin-right: -15px;
+    padding-right: 15px;
+    /* Ensure the list doesn't cause the vertical overflow */
+    max-width: 100%;
+    
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    
+    /* Make it feel like infinite scroll */
+    &::after {
+      content: "";
+      padding-right: 16px;
+      flex: 0 0 1px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      gap: 12px;
+      padding-bottom: 12px;
+    }
+    
+    @media (max-width: 576px) {
+      gap: 10px;
+      padding-bottom: 10px;
+      margin-right: -10px;
+      padding-right: 10px;
+    }
+    
+    @media (max-width: 390px) {
+      gap: 8px;
+      padding-left: 8px; /* Add some padding on the left for smallest screens */
+    }
+  }
+  
+  .item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    flex: 0 0 auto;
+    width: 341px;
+    margin-right: 0;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+  
+    /* Responsive width adjustments */
+    @media (max-width: 1200px) {
+      width: 300px;
+    }
+    
+    @media (max-width: 768px) {
+      width: 260px;
+    }
+    
+    @media (max-width: 576px) {
+      width: 220px;
+    }
+    
+    @media (max-width: 390px) {
+      width: 85vw; /* Use viewport width for smallest screens */
+    }
+  
+    button {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+  
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  
+  .loadingItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 100px;
+    height: 271px;
+  }
+  
+  .loadingSpinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .spinnerIcon {
+    font-size: 24px;
+    color: #004a60;
+    animation: spin 1.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .heart {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .block {
+    padding: 15px;
+    
+    h6 {
+      margin-bottom: 8px;
+      font-size: 18px;
+      color: #333;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    div {
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      padding: 12px;
+      
+      h6 {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      padding: 10px;
+      
+      h6 {
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+    }
+    
+    @media (max-width: 390px) {
+      padding: 8px;
+      
+      h6 {
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+    }
+  }
+  
+  .review {
+    margin-left: 8px;
+    font-size: 14px;
+    color: #666;
+    
+    @media (max-width: 768px) {
+      font-size: 13px;
+      margin-left: 6px;
+    }
+    
+    @media (max-width: 576px) {
+      font-size: 12px;
+      margin-left: 5px;
+    }
+    
+    @media (max-width: 390px) {
+      font-size: 11px;
+      margin-left: 4px;
+    }
+  }
+  
+  .right {
+    width: 24px;
+    height: 24px;
+  }
+  
