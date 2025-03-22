@@ -10,6 +10,7 @@ import VisionProfile from "./VisionProfile/VisionProfile";
 import { Avatar, Space } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import BurgerMenu from "@/appPages/site/ui/BurgerMenu/BurgerMenu";
+import { AUTH } from "@/redux/api/auth/types";
 const Profile: FC = () => {
   const [tab, setTab] = useState(false);
 

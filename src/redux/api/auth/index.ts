@@ -1,4 +1,5 @@
 import { api as index } from "..";
+import { AUTH } from "./types";
 
 const api = index.injectEndpoints({
   endpoints: (build) => ({
@@ -36,15 +37,13 @@ const api = index.injectEndpoints({
       }),
       invalidatesTags: ["auth"],
     }),
-    postLogout: build.mutation<AUTH.PostLogoutResponse, AUTH.PostLogoutRequest>(
-      {
-        query: () => ({
-          url: "/logout",
-          method: "POST",
-        }),
-        invalidatesTags: ["auth"],
-      }
-    ),
+    postLogout: build.mutation<AUTH.PostLogoutResponse, AUTH.PostLogoutRequest>({
+      query: () => ({
+        url: "/logout",
+        method: "POST",
+      }),
+      invalidatesTags: ["auth"],
+    }),
     patchRefreshToken: build.mutation<
       AUTH.PatchRefreshResponse,
       AUTH.PatchRefreshRequest
@@ -84,9 +83,10 @@ const api = index.injectEndpoints({
         method: "GET",
       }),
       providesTags: ["favorite"],
-    })
+    }),
   }),
 });
+
 export const {
   useGetMeQuery,
   usePatchMeMutation,

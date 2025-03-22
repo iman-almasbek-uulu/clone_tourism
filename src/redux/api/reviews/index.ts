@@ -1,8 +1,8 @@
 import { api as index } from "..";
-import {REVIEWS} from "./types"
+import { REVIEWS } from "./types";
+
 const api = index.injectEndpoints({
   endpoints: (builder) => ({
-    // Статистика
     getStaticReviews: builder.query<
       REVIEWS.StaticReview[],
       { entityType: string }
@@ -21,8 +21,8 @@ const api = index.injectEndpoints({
               { type: "StaticReviews", id: entityType },
             ]
           : [{ type: "StaticReviews", id: entityType }],
-      transformResponse: (response: unknown[]): REVIEWS.StaticReview[] => {
-        return (response as any[]).map((item) => ({
+      transformResponse: (response: REVIEWS.RawStaticReviewResponse[]): REVIEWS.StaticReview[] => {
+        return response.map((item) => ({
           id: item.id,
           name:
             item.kitchen_name ||
@@ -59,13 +59,13 @@ const api = index.injectEndpoints({
               { type: "Reviews", id: entityType },
             ]
           : [{ type: "Reviews", id: entityType }],
-      transformResponse: (response: unknown[]): REVIEWS.Review[] => {
-        return (response as any[]).map((item) => ({
+      transformResponse: (response: REVIEWS.RawReviewResponse[]): REVIEWS.Review[] => {
+        return response.map((item) => ({
           id: item.id,
           entityId:
             item.hotel || item.kitchen || item.attractions || item.popular_place || "unknown",
           client: item.client,
-          comment: item.comment || item.comment,
+          comment: item.comment || "",
           rating: item.rating,
           nutrition_rating: item.nutrition_rating,
           service_rating: item.service_rating,
@@ -78,36 +78,37 @@ const api = index.injectEndpoints({
             item.review_image ||
             item.attraction_review_image ||
             [],
-          createdAt: item.created_at || item.created_date,
+          createdAt: item.created_at || item.created_date || "",
           replyReviews:
-            item.reply_hotel_reviews?.map((reply: any) => ({
+            item.reply_hotel_reviews?.map((reply) => ({
               id: reply.id,
               user: reply.user,
               comment: reply.comment,
-              created_date: reply.created_date
+              created_date: reply.created_date,
             })) ||
-            item.reply_attraction_reviews?.map((reply: any) => ({
+            item.reply_attraction_reviews?.map((reply) => ({
               id: reply.id,
               user: reply.user,
               comment: reply.comment,
-              created_date: reply.created_date
+              created_date: reply.created_date,
             })) ||
-            item.reply_kitchen_reviews?.map((reply: any) => ({
+            item.reply_kitchen_reviews?.map((reply) => ({
               id: reply.id,
               user: reply.user,
               comment: reply.comment,
-              created_date: reply.created_date
+              created_date: reply.created_date,
             })) ||
-            item.reply_popular_places?.map((reply: any) => ({
+            item.reply_popular_places?.map((reply) => ({
               id: reply.id,
               user: reply.user,
               comment: reply.comment,
-              created_date: reply.created_date
+              created_date: reply.created_date,
             })) ||
             [],
         }));
       },
     }),
+
     postRewiewHotel: builder.mutation<REVIEWS.RewiewHotelResponse, FormData>({
       query: (formData) => ({
         url: "/hotels_review_create/",

@@ -6,6 +6,7 @@ import { FC, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Switch } from "antd";
 import Link from "next/link";
+import { AUTH } from "@/redux/api/auth/types";
 
 const SignUpPage: FC = () => {
   const [postRegisterMutation] = usePostRegistrationMutation();

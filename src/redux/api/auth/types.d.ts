@@ -1,6 +1,6 @@
 namespace AUTH {
-  type GetResponse = {
-    id?: number
+  export type GetResponse = {
+    id?: number;
     first_name: string;
     last_name: string;
     email: string;
@@ -8,12 +8,12 @@ namespace AUTH {
     user_picture: string | null;
     from_user: string;
     cover_photo: string | null;
-    birth_date: string
+    birth_date: string;
   }[];
-  type GetRequest = void;
+  export type GetRequest = void;
 
-  type PatchMeResponse = {
-    id?: number
+  export type PatchMeResponse = {
+    id?: number;
     first_name?: string;
     last_name?: string;
     email?: string;
@@ -21,10 +21,10 @@ namespace AUTH {
     user_picture?: string | null;
     from_user?: string;
     cover_photo?: string | null;
-    birth_date?: string
-  }
-  type PatchMeRequest = {
-    id?: number
+    birth_date?: string;
+  };
+  export type PatchMeRequest = {
+    id?: number;
     first_name?: string;
     last_name?: string;
     email?: string;
@@ -32,61 +32,60 @@ namespace AUTH {
     user_picture?: string | null;
     from_user?: string;
     cover_photo?: string | null;
-    birth_date?: string
-  }
+    birth_date?: string;
+  };
 
-  type PostLoginResponse = {
+  export type PostLoginResponse = {
     access: string;
     refresh: string;
   };
-
-  type PostLoginRequest = {
+  export type PostLoginRequest = {
     email: string;
     password: string;
   };
 
-  type PostRegistrationResponse = {
+  export type PostRegistrationResponse = {
     access: string;
     refresh: string;
   };
-  type PostRegistrationRequest = {
-    email: string
-    password: string
-    confirm_password: string
-    first_name: string
-    last_name: string
-    phone_number: string
-    birth_date: string
+  export type PostRegistrationRequest = {
+    email: string;
+    password: string;
+    confirm_password: string;
+    first_name: string;
+    last_name: string;
+    phone_number: string;
+    birth_date: string;
   };
 
-  type PostLogoutResponse = {};
-  type PostLogoutRequest = void;
+  export type PostLogoutResponse = void;
+  export type PostLogoutRequest = void;
 
-  type PatchRefreshResponse = {
-    refresh: string
+  export type PatchRefreshResponse = {
+    refresh: string;
     access: string;
   };
-  type PatchRefreshRequest = {
-    refresh: string
+  export type PatchRefreshRequest = {
+    refresh: string;
   };
 
-  type PostForgotPasswordResponse = {
+  export type PostForgotPasswordResponse = {
     status: string;
   };
-  type PostForgotPasswordRequest = {
+  export type PostForgotPasswordRequest = {
     email: string;
   };
 
-  type PostResetPasswordResponse = {
+  export type PostResetPasswordResponse = {
     message: string;
   };
-  type PostResetPasswordRequest = {
+  export type PostResetPasswordRequest = {
     email: string;
     reset_code: string;
     new_password: string;
   };
 
-  type Attraction = {
+  export type Attraction = {
     id: number;
     attraction_name: string;
     region_category: string;
@@ -95,9 +94,9 @@ namespace AUTH {
     popular_places: string[];
     avg_rating: number;
     rating_count: number;
-  }
+  };
 
-  type PopularRegion = {
+  export type PopularRegion = {
     id: number;
     popular_name: string;
     popular_image: string;
@@ -105,18 +104,18 @@ namespace AUTH {
     avg_rating: number;
     rating_count: number;
     address?: string;
-  }
+  };
 
-  type Gallery = {
+  export type Gallery = {
     id: number;
     gallery_name: string;
     gallery_image: string;
     address: string;
     avg_rating: number;
     rating_count: number;
-  }
+  };
 
-  type Kitchen = {
+  export type Kitchen = {
     id: number;
     kitchen_name: string;
     price: string;
@@ -126,9 +125,9 @@ namespace AUTH {
     average_rating: number;
     rating_count: number;
     main_image: string;
-  }
+  };
 
-  type Hote = {
+  export type Hotel = {
     id: number;
     name: string;
     main_image: string;
@@ -138,9 +137,9 @@ namespace AUTH {
     popular_places: string[];
     latitude?: number;
     longitude?: number;
-  }
+  };
 
-  type FavoriteItem = {
+  export type FavoriteItem = {
     id: number;
     user?: number;
     attractions?: Attraction;
@@ -150,6 +149,7 @@ namespace AUTH {
     kitchen?: Kitchen;
     like?: boolean;
     created_date?: string;
-  }
-
+  };
 }
+
+export { AUTH };

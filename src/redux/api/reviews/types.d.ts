@@ -178,7 +178,6 @@ namespace REVIEWS {
   }
 
   export interface Review {
-    [x: string]: any; // Для динамических свойств
     id: number;
     entityId: number | string; 
     client: Client;
@@ -191,7 +190,7 @@ namespace REVIEWS {
 
   export interface StaticReview {
     id: number;
-    name: string; 
+    name?: string; 
     avgRating: number; 
     ratingCount: number;
     excellent: number;
@@ -199,6 +198,47 @@ namespace REVIEWS {
     notBad: number;
     bad: number;
     terribly: number;
+  }
+  export interface RawStaticReviewResponse {
+    id: number;
+    kitchen_name?: string;
+    popular_name?: string;
+    name?: string;
+    attraction_name?: string;
+    avg_rating?: number;
+    average_rating?: number;
+    rating_count?: number;
+    excellent?: number;
+    good?: number;
+    not_bad?: number;
+    bad?: number;
+    terribly?: number;
+  }
+
+  export interface RawReviewResponse {
+    id: number;
+    hotel?: number;
+    kitchen?: number;
+    attractions?: number;
+    popular_place?: number;
+    client: REVIEWS.Client;
+    comment?: string;
+    rating: number;
+    nutrition_rating?: number;
+    service_rating?: number;
+    price_rating?: number;
+    atmosphere_rating?: number;
+    count_like?: number;
+    hotel_review_image?: REVIEWS.ReviewImage[];
+    kitchen_review_image?: REVIEWS.KitchenReviewImage[];
+    review_image?: REVIEWS.ReviewImage[];
+    attraction_review_image?: REVIEWS.AttractionReviewImage[];
+    created_at?: string;
+    created_date?: string;
+    reply_hotel_reviews?: REVIEWS.ReplyHotelReview[];
+    reply_attraction_reviews?: REVIEWS.ReplyAttractionReview[];
+    reply_kitchen_reviews?: REVIEWS.ReplyKitchenReview[];
+    reply_popular_places?: { id: number; user: REVIEWS.Client; comment: string; created_date: string }[];
   }
 }
 

@@ -1,11 +1,19 @@
 import scss from "./ResetPasswordPage.module.scss";
-import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { usePostResetPasswordMutation } from "@/redux/api/auth";
 import { useRouter } from "next/navigation";
+import { AUTH } from "@/redux/api/auth/types";
 // import { useState } from "react";
 // import logo from "@/assets/icons/logo.svg";
 // import Link from "next/link";
+
+// Тип ошибки от API
+interface ApiError {
+  status: number | string;
+  data: {
+    message?: string;
+  };
+}
 
 const ResetPasswordPage = () => {
   const {
@@ -22,14 +30,15 @@ const ResetPasswordPage = () => {
     try {
       const response = await postResetPassword({
         email: data.email,
-        reset_code: data.reset_code, 
-        new_password: data.new_password, 
+        reset_code: data.reset_code,
+        new_password: data.new_password,
       }).unwrap();
       alert(response.message);
       router.push("/auth/sign-in");
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Ошибка:", error);
-      alert(error?.data?.message || "Ошибка при сбросе пароля.");
+      const apiError = error as ApiError; // Приведение типа
+      alert(apiError?.data?.message || "Ошибка при сбросе пароля.");
     }
   };
 

@@ -6,12 +6,10 @@ import { useGetPopularPlacesQuery } from "@/redux/api/regions";
 import Stars from "@/appPages/site/ui/stars/Stars";
 import LikePost from "../regionSections/places/LikePost";
 import Image from "next/image";
-import { useGetMeQuery } from "@/redux/api/auth";
 
 const Gallery = () => {
   const { t } = useTranslate();
   const { data: popular } = useGetPopularPlacesQuery();
-  const { data: user } = useGetMeQuery();
 
   return (
     <section id={scss.Gallery}>

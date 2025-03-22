@@ -6,7 +6,7 @@ import { RegionProvider } from "@/providers/RegionProvider";
 import { SessionProvider } from "@/providers/SessionProvider";
 // import { Session } from "next-auth";
 import React, { FC, ReactNode } from "react";
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 
 interface RootLayoutClientProps {
   children: ReactNode;
@@ -15,7 +15,7 @@ interface RootLayoutClientProps {
 const RootLayoutClient: FC<RootLayoutClientProps> = ({ children }) => {
   return (
     <>
-      <BrowserRouter>
+      {/* <BrowserRouter> */}
         <ReduxProvider>
           <SessionProvider>
             {/* <ProtectProvider> */}
@@ -25,7 +25,7 @@ const RootLayoutClient: FC<RootLayoutClientProps> = ({ children }) => {
             {/* </ProtectProvider> */}
           </SessionProvider>
         </ReduxProvider>
-      </BrowserRouter>
+      {/* </BrowserRouter> */}
     </>
   );
 };

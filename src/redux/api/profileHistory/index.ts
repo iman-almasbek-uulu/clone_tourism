@@ -6,14 +6,12 @@ const api = index.injectEndpoints({
     getMeReviews: builder.query<MY_REVIEWS.Responses.GetReviews, void>({
       query: () => ({
         url: `/user_comments/`,
-        method: 'GET',
+        method: "GET",
       }),
-      // Трансформируем ответ, чтобы привести его к нужному формату
-      transformResponse: (response: any) => {
-        // Если сервер возвращает массив отзывов напрямую
+      transformResponse: (response: MY_REVIEWS.RawReviewResponse): MY_REVIEWS.Responses.GetReviews => {
         return { data: response };
       },
-      providesTags: ['comments2', 'Reviews2'],
+      providesTags: ["comments2", "Reviews2"],
     }),
   }),
 });

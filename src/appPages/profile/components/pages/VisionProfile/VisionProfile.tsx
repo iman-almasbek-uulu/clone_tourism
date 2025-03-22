@@ -6,6 +6,7 @@ import { Avatar, Space } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useGetMeQuery, usePatchMeMutation } from "@/redux/api/auth";
 import { useForm } from "react-hook-form";
+import { AUTH } from "@/redux/api/auth/types";
 
 const VisionProfile = () => {
   const [coverPreview, setCoverPreview] = useState<string | null>(null);

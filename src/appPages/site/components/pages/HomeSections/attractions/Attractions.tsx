@@ -8,7 +8,6 @@ import Stars from "@/appPages/site/ui/stars/Stars";
 import { useGetAttractionsQuery } from "@/redux/api/home";
 import Image from "next/image";
 import { useState } from "react";
-import LikePost from "../../regionSections/places/LikePost";
 import LikeAttraction from "../../PlaceSections/tabs_content/tab_attractions/attractionList/LikeAttraction";
 
 const Attractions = () => {

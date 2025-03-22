@@ -1,7 +1,7 @@
+"use client"; // Добавь, если ещё не указано
 import { useGetRegionListQuery } from "@/redux/api/regions";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation"; // Замени useNavigate на useRouter
 import { FC, ReactNode, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 interface RegionProviderProps {
     children: ReactNode
@@ -9,9 +9,9 @@ interface RegionProviderProps {
 
 export const RegionProvider: FC<RegionProviderProps> = ({children}) => {
     const { data } = useGetRegionListQuery();
-    
     const pathName = usePathname();
-    const router = useNavigate();
+    const router = useRouter(); // Используем useRouter из Next.js
+
     const handelNavigate = () => {
       switch (pathName) {
         case "/talas":
@@ -22,21 +22,20 @@ export const RegionProvider: FC<RegionProviderProps> = ({children}) => {
         case "/osh":
         case "/batken":
           if (!data) {
-            router("/404");
+            router.push("/404"); // Используем .push для навигации
           }
           break;
         case "/404":
           if (data) {
-              router('/talas')
-        }
-
+            router.push('/talas'); // Используем .push для навигации
+          }
+          break;
       }
     };
 
     useEffect(() => {
-        handelNavigate()
-    }, [data, pathName, router])
+        handelNavigate();
+    }, [data, pathName, router]);
 
-    return children
+    return children;
 };
-

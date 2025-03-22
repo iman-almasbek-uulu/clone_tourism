@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import styles from "./Reviews.module.scss";
 import StatisticColumn from "./statisticColumn/StatisticColumn";
 import ReviewsColumn from "./reviewsColumn/ReviewsColumn";
+import { REVIEWS } from "@/redux/api/reviews/types";
 
 interface ReviewsProps {
   isTab: number;

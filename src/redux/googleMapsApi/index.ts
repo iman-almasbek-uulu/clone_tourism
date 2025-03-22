@@ -24,7 +24,7 @@ export const directionsApi = createApi({
           case "WALKING":
             travelMode = google.maps.TravelMode.WALKING;
             break;
-          case "DRIVING": // Заменили BUS на DRIVING
+          case "DRIVING":
             travelMode = google.maps.TravelMode.DRIVING;
             break;
           case "TRAIN":
@@ -34,8 +34,9 @@ export const directionsApi = createApi({
           default:
             return {
               error: {
-                status: "INVALID_REQUEST" as const,
-                data: "Invalid travel mode",
+                status: "CUSTOM_ERROR" as const,
+                error: "Invalid travel mode",
+                data: "The provided travel mode is not supported",
               } as FetchBaseQueryError,
             };
         }
@@ -47,7 +48,7 @@ export const directionsApi = createApi({
               destination,
               travelMode,
               ...(transitOptions && { transitOptions }),
-              region: "KG", // Ограничиваем маршруты Кыргызстаном
+              region: "KG",
             },
             (result, status) => {
               if (status === google.maps.DirectionsStatus.OK && result) {
@@ -60,8 +61,9 @@ export const directionsApi = createApi({
               } else {
                 resolve({
                   error: {
-                    status: status ?? "UNKNOWN_ERROR",
-                    data: "Failed to fetch directions: " + status,
+                    status: "CUSTOM_ERROR" as const,
+                    error: `Failed to fetch directions: ${status}`,
+                    data: status ?? "UNKNOWN_ERROR",
                   } as FetchBaseQueryError,
                 });
               }

@@ -1,4 +1,5 @@
 "use client";
+import { AUTH } from "@/redux/api/auth/types";
 import scss from "./SignInPage.module.scss";
 import { usePostLoginMutation } from "@/redux/api/auth";
 import { ConfigProvider, Switch } from "antd";
@@ -12,6 +13,7 @@ interface signInProps {
 }
 
 const SignInPage: FC = () => {
+  debugger
   const [postLoginMutation] = usePostLoginMutation();
   const [showModal, setShowModal] = useState(false); // Состояние для модалки
   const [modalMessage, setModalMessage] = useState(""); // Сообщение модалки

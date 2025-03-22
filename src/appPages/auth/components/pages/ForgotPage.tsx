@@ -6,7 +6,17 @@ import { usePostForgotPasswordMutation } from "@/redux/api/auth";
 // import logo from "@/assets/icons/logo.svg";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-// import { useRouter } from "next/router";
+import { AUTH } from "@/redux/api/auth/types";
+
+// Тип ошибки от API
+interface ApiError {
+  status: number | string;
+  data: {
+    data?: {
+      email?: string[];
+    };
+  };
+}
 
 const ForgotPage = () => {
   const {
@@ -29,9 +39,10 @@ const ForgotPage = () => {
       const response = await postForgotPassword(data).unwrap();
       alert(response.status);
       router.push("/auth/reset_password");
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Ошибка запроса:", error);
-      alert(error?.data?.data?.email?.[0] || "Ошибка при отправке запроса.");
+      const apiError = error as ApiError; // Приведение типа
+      alert(apiError?.data?.data?.email?.[0] || "Ошибка при отправке запроса.");
     }
   };
 
