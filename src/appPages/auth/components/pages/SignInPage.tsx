@@ -13,7 +13,6 @@ interface signInProps {
 }
 
 const SignInPage: FC = () => {
-  debugger
   const [postLoginMutation] = usePostLoginMutation();
   const [showModal, setShowModal] = useState(false); // Состояние для модалки
   const [modalMessage, setModalMessage] = useState(""); // Сообщение модалки
@@ -29,6 +28,7 @@ const SignInPage: FC = () => {
   };
 
   const onSubmit: SubmitHandler<signInProps> = async (userData) => {
+
     if (Object.keys(errors).length > 0) {
       setModalMessage("Пожалуйста, заполните все обязательные поля.");
       setShowModal(true);
@@ -65,9 +65,9 @@ const SignInPage: FC = () => {
           placeholder="Email"
           {...register("email", { required: "Введите Email" })}
         />
-          {errors.password && (
-            <span className={scss.error}>{errors.password.message}</span>
-          )}
+        {errors.password && (
+          <span className={scss.error}>{errors.password.message}</span>
+        )}
         <input
           type="password"
           placeholder="Password"
